@@ -1,11 +1,22 @@
-import os
 from os.path import exists
 from git import Repo
+import pathlib
 
 
-title_path = 'title.txt'
+path = str(pathlib.Path().resolve())
+title_path = path + '/title.txt'
+update_path = path + '/update_path.txt'
 
-path = os.getcwd()
+print(str(path))
+print(update_path)
+
+if exists(update_path):
+    with open(update_path, 'r') as f:
+        path = f.read()
+else:
+    print('update path is not exist!')
+    exit(0)
+
 repo = Repo(path)
 
 status = repo.head.commit.diff(None)
@@ -17,13 +28,12 @@ if len(status) == 0:
 commit_items = {}
 commit_msg = ''
 
-with open(title_path, 'r') as f:
-    commit_msg += f.read().format(len(status)) + '\n\n'
+if exists(title_path):
+    with open(title_path, 'r') as f:
+        commit_msg += f.read().format(len(status)) + '\n\n'
 
 # Find Changed Item
 for x in status:
-    print(f'{x.change_type} {x.a_path}')
-
     comment = ''
     if x.change_type == 'A':
         comment = 'Add'
