@@ -56,7 +56,7 @@ print(commit_msg)
 repo.index.commit(commit_msg)
 
 print(repo.remotes.origin.url)
-origin = repo.create_remote('origin', repo.remotes.origin.url)
+origin = repo.remotes.origin
 
 origin.fetch()
 origin.pull()
