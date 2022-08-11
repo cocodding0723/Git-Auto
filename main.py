@@ -59,5 +59,5 @@ print(repo.remotes.origin.url)
 origin = repo.remotes.origin
 
 origin.fetch()
-# origin.pull()
+origin.pull()
 origin.push()
