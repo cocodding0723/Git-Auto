@@ -7,9 +7,6 @@ path = str(pathlib.Path().resolve())
 title_path = path + '/title.txt'
 update_path = path + '/update_path.txt'
 
-print(str(path))
-print(update_path)
-
 if exists(update_path):
     with open(update_path, 'r') as f:
         path = f.read()
