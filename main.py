@@ -61,3 +61,5 @@ origin = repo.remotes.origin
 origin.fetch()
 origin.pull()
 origin.push()
+
+print('finish')
