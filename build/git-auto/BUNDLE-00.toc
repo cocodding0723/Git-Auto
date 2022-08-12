@@ -1,0 +1,3 @@
+([('git-auto',
+   '/Users/gangchanhyeong/Projects/Python/Git-Auto-Commit/dist/git-auto',
+   'EXECUTABLE')],)

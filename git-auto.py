@@ -1,9 +1,12 @@
 from os.path import exists
 from git import Repo
 import pathlib
+import sys
 
 
-path = str(pathlib.Path().resolve())
+path = str(pathlib.Path(__file__).parent.resolve())
+print(path)
+
 title_path = path + '/title.txt'
 update_path = path + '/update_path.txt'
 
@@ -11,8 +14,9 @@ if exists(update_path):
     with open(update_path, 'r') as f:
         path = f.read()
 else:
-    print('update path is not exist!')
-    exit(0)
+    path = input('path: ')
+    with open(update_path, 'w') as f:
+        f.write(path)
 
 repo = Repo(path)
 
@@ -20,7 +24,7 @@ status = repo.head.commit.diff(None)
 
 if len(status) == 0:
     print('clean')
-    exit(0)
+    sys.exit()
 
 commit_items = {}
 commit_msg = ''
@@ -28,6 +32,11 @@ commit_msg = ''
 if exists(title_path):
     with open(title_path, 'r') as f:
         commit_msg += f.read().format(len(status)) + '\n\n'
+else:
+    with open(title_path, 'w') as f:
+        title_context = input('title: ')
+        f.write(title_context)
+        commit_msg += title_context.format(len(status)) + '\n\n'
 
 # Find Changed Item
 for x in status:

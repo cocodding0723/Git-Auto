@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/gangchanhyeong/Projects/Python/Git-Auto-Commit/git-auto.py", line 2, in <module>
+    from git import Repo
+ModuleNotFoundError: No module named 'git'
